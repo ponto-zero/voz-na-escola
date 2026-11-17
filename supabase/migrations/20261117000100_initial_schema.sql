@@ -1,0 +1,11 @@
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
+grant usage on schema private to service_role;
+create table if not exists private.school_staff(user_id uuid primary key references auth.users(id) on delete cascade,full_name text not null,created_at timestamptz not null default now());
+create table if not exists private.reports(id uuid primary key default gen_random_uuid(),protocol text not null unique,access_token_hash text not null,category text not null check(category in('bullying','threats','violence','harassment','discrimination','property_damage','other')),description text not null check(char_length(description) between 20 and 5000),location text,incident_date date,anonymous boolean not null default true,reporter_name text,reporter_email text,status text not null default 'received' check(status in('received','reviewing','resolved')),staff_notes text,created_at timestamptz not null default now(),updated_at timestamptz not null default now(),check((anonymous=true and reporter_name is null and reporter_email is null) or anonymous=false));
+create index if not exists reports_created_at_idx on private.reports(created_at desc);
+create table if not exists private.report_events(id bigint generated always as identity primary key,report_id uuid not null references private.reports(id) on delete cascade,staff_user_id uuid references auth.users(id),event_type text not null,details text,created_at timestamptz not null default now());
+alter table private.school_staff enable row level security;alter table private.reports enable row level security;alter table private.report_events enable row level security;
+revoke all on all tables in schema private from public,anon,authenticated;grant all on all tables in schema private to service_role;grant usage,select on all sequences in schema private to service_role;
+create or replace function private.set_updated_at() returns trigger language plpgsql as $$ begin new.updated_at=now();return new;end;$$;
+drop trigger if exists reports_set_updated_at on private.reports;create trigger reports_set_updated_at before update on private.reports for each row execute function private.set_updated_at();
