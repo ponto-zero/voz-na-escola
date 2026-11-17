@@ -1,0 +1,10 @@
+alter table private.school_staff set schema public;
+alter table private.reports set schema public;
+alter table private.report_events set schema public;
+revoke all on public.school_staff, public.reports, public.report_events from public, anon, authenticated;
+grant all on public.school_staff, public.reports, public.report_events to service_role;
+grant usage, select on sequence public.report_events_id_seq to service_role;
+alter table public.school_staff enable row level security;
+alter table public.reports enable row level security;
+alter table public.report_events enable row level security;
+comment on table public.reports is 'Dados sensíveis do VozNaEscola. RLS ativa, sem políticas públicas; acesso somente por Edge Functions.';
