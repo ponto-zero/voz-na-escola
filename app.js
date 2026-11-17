@@ -1,3 +1,9 @@
+
+const pageTabs=[...document.querySelectorAll("[data-page-tab]")],pagePanels=[...document.querySelectorAll(".tab-panel")];
+function openPageTab(name){pageTabs.forEach(tab=>{const active=tab.dataset.pageTab===name;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",String(active));});pagePanels.forEach(panel=>panel.classList.toggle("active",panel.id==="tab-"+name));}
+pageTabs.forEach(tab=>tab.addEventListener("click",()=>openPageTab(tab.dataset.pageTab)));
+document.querySelectorAll("[data-open-tab]").forEach(button=>button.addEventListener("click",()=>{openPageTab(button.dataset.openTab);document.querySelector(".main-tabs")?.scrollIntoView({behavior:"smooth",block:"start"});}));
+
 const URL="https://rigwsunmsigsdheblffj.supabase.co",KEY="sb_publishable_P0MDf0eRNVeocjHxAnfL6w_ZGWpSQ4q";
 async function invoke(name,body){const r=await fetch(URL+"/functions/v1/"+name,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY},body:JSON.stringify(body)});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||"Não foi possível concluir.");return d;}
 const form=document.querySelector("#report-form"),anon=document.querySelector("#anonymous"),identified=document.querySelector("#identified"),role=form.querySelector('[name="reporter_role"]');
