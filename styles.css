@@ -44,3 +44,8 @@ footer small{color:#9db9c8}
 .admin-wrap{color:#e4edf6}.admin-card{background:#142538;border-color:#2b4055;box-shadow:0 10px 30px #0003}.admin-card p{color:#b8c8d7}.admin-controls select{background:#0b1928;color:#e5eef8}
 .danger-note{color:#e9bd77}
 @media(max-width:700px){.hero{background:radial-gradient(ellipse at 80% 10%,#1d4b59 0,transparent 40%),linear-gradient(125deg,#10283a,#101e34)}}
+
+
+/* Abas de categoria */
+.category-picker{min-width:0}.category-heading{display:block;color:#e7f0f9;font-size:15px;margin-bottom:12px}.category-tabs{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.category-tab{border:1px solid #344b60;background:#0b1928;color:#b9c9d8;border-radius:999px;padding:10px 15px;font:700 13px 'DM Sans',sans-serif;cursor:pointer;transition:all .18s}.category-tab:hover{border-color:#52d6c2;color:#72e4d3;transform:translateY(-1px)}.category-tab.active{background:linear-gradient(135deg,#087f78,#18a995);border-color:#52d6c2;color:#fff;box-shadow:0 6px 18px #087f7840}.category-value{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.category-hint{font-size:12px;color:#91a7b9;margin:10px 0 0}
+@media(max-width:700px){.category-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;padding:3px 2px 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.category-tab{flex:0 0 auto;scroll-snap-align:start}.category-tabs::-webkit-scrollbar{height:5px}.category-tabs::-webkit-scrollbar-thumb{background:#38566b;border-radius:8px}}
