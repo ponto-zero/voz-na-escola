@@ -17,5 +17,10 @@ Projeto: rigwsunmsigsdheblffj (sa-east-1). URL e chave publicável estão no fro
 2. Copie o UUID do profissional autorizado e execute no SQL Editor:
    insert into public.school_staff (user_id, full_name) values ('UUID-DO-USUARIO', 'Nome do profissional');
 
+## Publicar no GitHub Pages
+1. No repositório, abra Settings > Pages.
+2. Em Build and deployment, selecione GitHub Actions como Source.
+3. O workflow já incluído publica o site após um push na branch main. O endereço aparecerá na página Pages após a primeira execução.
+
 ## Importante
 Antes de receber relatos reais, a direção deve aprovar o fluxo, definir responsáveis e horários de monitoramento, informar a comunidade sobre privacidade e retenção dos dados e validar as obrigações legais aplicáveis, inclusive proteção de crianças e adolescentes. Esta primeira versão não possui CAPTCHA nem garantia de monitoramento em tempo real e não é um canal de emergência. Em risco imediato, procure um adulto/equipe responsável ou os serviços de emergência.
